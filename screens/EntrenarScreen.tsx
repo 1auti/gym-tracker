@@ -16,6 +16,7 @@ import { addSerie, getUltimaSerie, listEjerciciosConocidos, listSeriesBySesion }
 import { getOrCrearSesionHoy } from '../db/sesiones';
 import { getPlantilla } from '../db/plantillas';
 import { PlantillaItem, Serie } from '../db/types';
+import { colors } from '../theme';
 
 export default function EntrenarScreen() {
   const route = useRoute<any>();
@@ -162,42 +163,42 @@ export default function EntrenarScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff' },
+  container: { flex: 1, backgroundColor: colors.background },
   lista: { flex: 1 },
-  vacio: { textAlign: 'center', color: '#888', marginTop: 24 },
+  vacio: { textAlign: 'center', color: colors.textMuted, marginTop: 24 },
   sugeridos: { flexDirection: 'row', flexWrap: 'wrap', paddingHorizontal: 12, gap: 8 },
   chip: {
-    backgroundColor: '#e5e7eb',
+    backgroundColor: colors.chip,
     borderRadius: 16,
     paddingHorizontal: 12,
     paddingVertical: 6,
     marginBottom: 8,
   },
-  chipTexto: { fontSize: 13 },
+  chipTexto: { fontSize: 13, color: colors.text },
   form: {
     borderTopWidth: 1,
-    borderTopColor: '#eee',
+    borderTopColor: colors.border,
     padding: 16,
     gap: 12,
   },
   steppers: { flexDirection: 'row', justifyContent: 'space-around' },
-  toggleRpe: { color: '#2563eb', textAlign: 'center', fontSize: 14 },
+  toggleRpe: { color: colors.primary, textAlign: 'center', fontSize: 14 },
   acciones: { flexDirection: 'row', gap: 10 },
   botonPrimario: {
     flex: 1,
-    backgroundColor: '#16a34a',
+    backgroundColor: colors.success,
     borderRadius: 10,
     paddingVertical: 14,
     alignItems: 'center',
   },
   botonDeshabilitado: { opacity: 0.5 },
-  botonPrimarioTexto: { color: '#fff', fontWeight: '700', fontSize: 16 },
+  botonPrimarioTexto: { color: colors.onPrimary, fontWeight: '700', fontSize: 16 },
   botonSecundario: {
     flex: 1,
-    backgroundColor: '#e5e7eb',
+    backgroundColor: colors.chip,
     borderRadius: 10,
     paddingVertical: 14,
     alignItems: 'center',
   },
-  botonSecundarioTexto: { color: '#111', fontWeight: '600', fontSize: 16 },
+  botonSecundarioTexto: { color: colors.text, fontWeight: '600', fontSize: 16 },
 });

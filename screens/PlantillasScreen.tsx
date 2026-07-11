@@ -18,6 +18,7 @@ import {
   listPlantillas,
 } from '../db/plantillas';
 import { NuevoPlantillaItem, Plantilla, PlantillaItem } from '../db/types';
+import { colors } from '../theme';
 
 type ItemEnEdicion = NuevoPlantillaItem & { key: string };
 
@@ -122,10 +123,10 @@ export default function PlantillasScreen() {
               <Text style={styles.hint}>Tocar para iniciar sesión</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => editarPlantilla(item.id)} style={styles.accionBoton}>
-              <Ionicons name="pencil" size={20} color="#2563eb" />
+              <Ionicons name="pencil" size={20} color={colors.primary} />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => borrarPlantilla(item.id)} style={styles.accionBoton}>
-              <Ionicons name="trash" size={20} color="#dc2626" />
+              <Ionicons name="trash" size={20} color={colors.danger} />
             </TouchableOpacity>
           </View>
         )}
@@ -171,6 +172,7 @@ function EditorPlantilla({ editando, onChange, onCancelar, onGuardar }: EditorPl
           <TextInput
             style={styles.inputNombre}
             placeholder="Nombre de la plantilla"
+            placeholderTextColor={colors.textMuted}
             value={editando.nombre}
             onChangeText={(nombre) => onChange({ ...editando, nombre })}
           />
@@ -182,12 +184,14 @@ function EditorPlantilla({ editando, onChange, onCancelar, onGuardar }: EditorPl
             <TextInput
               style={[styles.input, styles.inputEjercicio]}
               placeholder="Ejercicio"
+              placeholderTextColor={colors.textMuted}
               value={item.ejercicio}
               onChangeText={(v) => actualizarItem(item.key, { ejercicio: v })}
             />
             <TextInput
               style={[styles.input, styles.inputChico]}
               placeholder="kg"
+              placeholderTextColor={colors.textMuted}
               keyboardType="numeric"
               value={item.peso != null ? String(item.peso) : ''}
               onChangeText={(v) => actualizarItem(item.key, { peso: v ? Number(v) : null })}
@@ -195,12 +199,13 @@ function EditorPlantilla({ editando, onChange, onCancelar, onGuardar }: EditorPl
             <TextInput
               style={[styles.input, styles.inputChico]}
               placeholder="reps"
+              placeholderTextColor={colors.textMuted}
               keyboardType="numeric"
               value={item.repeticiones != null ? String(item.repeticiones) : ''}
               onChangeText={(v) => actualizarItem(item.key, { repeticiones: v ? Number(v) : null })}
             />
             <TouchableOpacity onPress={() => quitarItem(item.key)} style={styles.accionBoton}>
-              <Ionicons name="close" size={20} color="#666" />
+              <Ionicons name="close" size={20} color={colors.textMuted} />
             </TouchableOpacity>
           </View>
         )}
@@ -227,31 +232,31 @@ function EditorPlantilla({ editando, onChange, onCancelar, onGuardar }: EditorPl
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff' },
-  vacio: { textAlign: 'center', color: '#888', marginTop: 24 },
+  container: { flex: 1, backgroundColor: colors.background },
+  vacio: { textAlign: 'center', color: colors.textMuted, marginTop: 24 },
   fila: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 14,
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    borderBottomColor: colors.border,
   },
   filaInfo: { flex: 1 },
-  nombre: { fontSize: 16, fontWeight: '600' },
-  hint: { fontSize: 12, color: '#888', marginTop: 2 },
+  nombre: { fontSize: 16, fontWeight: '600', color: colors.text },
+  hint: { fontSize: 12, color: colors.textMuted, marginTop: 2 },
   accionBoton: { padding: 8 },
   botonNueva: {
     margin: 16,
-    backgroundColor: '#2563eb',
+    backgroundColor: colors.primary,
     borderRadius: 10,
     paddingVertical: 14,
     alignItems: 'center',
   },
-  botonNuevaTexto: { color: '#fff', fontWeight: '700', fontSize: 16 },
+  botonNuevaTexto: { color: colors.onPrimary, fontWeight: '700', fontSize: 16 },
   inputNombre: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: colors.border,
     borderRadius: 8,
     paddingHorizontal: 12,
     paddingVertical: 10,
@@ -259,35 +264,39 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     margin: 16,
     marginBottom: 8,
+    color: colors.text,
+    backgroundColor: colors.surface,
   },
   itemFila: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, gap: 8, marginBottom: 8 },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: colors.border,
     borderRadius: 8,
     paddingHorizontal: 10,
     paddingVertical: 8,
+    color: colors.text,
+    backgroundColor: colors.surface,
   },
   inputEjercicio: { flex: 2 },
   inputChico: { flex: 1 },
   agregarItem: { paddingHorizontal: 16, paddingVertical: 10 },
-  agregarItemTexto: { color: '#2563eb', fontSize: 14 },
-  acciones: { flexDirection: 'row', gap: 10, padding: 16, borderTopWidth: 1, borderTopColor: '#eee' },
+  agregarItemTexto: { color: colors.primary, fontSize: 14 },
+  acciones: { flexDirection: 'row', gap: 10, padding: 16, borderTopWidth: 1, borderTopColor: colors.border },
   botonPrimario: {
     flex: 1,
-    backgroundColor: '#16a34a',
+    backgroundColor: colors.success,
     borderRadius: 10,
     paddingVertical: 14,
     alignItems: 'center',
   },
   botonDeshabilitado: { opacity: 0.5 },
-  botonPrimarioTexto: { color: '#fff', fontWeight: '700', fontSize: 16 },
+  botonPrimarioTexto: { color: colors.onPrimary, fontWeight: '700', fontSize: 16 },
   botonSecundario: {
     flex: 1,
-    backgroundColor: '#e5e7eb',
+    backgroundColor: colors.chip,
     borderRadius: 10,
     paddingVertical: 14,
     alignItems: 'center',
   },
-  botonSecundarioTexto: { color: '#111', fontWeight: '600', fontSize: 16 },
+  botonSecundarioTexto: { color: colors.text, fontWeight: '600', fontSize: 16 },
 });
