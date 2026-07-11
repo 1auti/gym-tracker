@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StatusBar } from 'expo-status-bar';
@@ -10,6 +11,12 @@ import PlantillasScreen from './screens/PlantillasScreen';
 import HistorialScreen from './screens/HistorialScreen';
 
 const Tab = createBottomTabNavigator();
+
+const ICONOS_TAB: Record<string, keyof typeof Ionicons.glyphMap> = {
+  Entrenar: 'barbell',
+  Plantillas: 'copy',
+  Historial: 'time',
+};
 
 export default function App() {
   const [listo, setListo] = useState(false);
@@ -29,7 +36,15 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <Tab.Navigator initialRouteName="Entrenar" screenOptions={{ headerShown: false }}>
+        <Tab.Navigator
+          initialRouteName="Entrenar"
+          screenOptions={({ route }) => ({
+            headerShown: false,
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name={ICONOS_TAB[route.name]} size={size} color={color} />
+            ),
+          })}
+        >
           <Tab.Screen name="Entrenar" component={EntrenarScreen} />
           <Tab.Screen name="Plantillas" component={PlantillasScreen} />
           <Tab.Screen name="Historial" component={HistorialScreen} />

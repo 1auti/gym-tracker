@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import React, { useCallback, useState } from 'react';
 import {
@@ -121,10 +122,10 @@ export default function PlantillasScreen() {
               <Text style={styles.hint}>Tocar para iniciar sesión</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => editarPlantilla(item.id)} style={styles.accionBoton}>
-              <Text>✏️</Text>
+              <Ionicons name="pencil" size={20} color="#2563eb" />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => borrarPlantilla(item.id)} style={styles.accionBoton}>
-              <Text>🗑️</Text>
+              <Ionicons name="trash" size={20} color="#dc2626" />
             </TouchableOpacity>
           </View>
         )}
@@ -199,7 +200,7 @@ function EditorPlantilla({ editando, onChange, onCancelar, onGuardar }: EditorPl
               onChangeText={(v) => actualizarItem(item.key, { repeticiones: v ? Number(v) : null })}
             />
             <TouchableOpacity onPress={() => quitarItem(item.key)} style={styles.accionBoton}>
-              <Text>✕</Text>
+              <Ionicons name="close" size={20} color="#666" />
             </TouchableOpacity>
           </View>
         )}
