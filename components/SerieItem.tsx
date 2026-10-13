@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Serie } from '../db/types';
+import { colors } from '../theme';
 
 interface SerieItemProps {
   serie: Serie;
@@ -24,8 +25,8 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 14,
     borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    borderBottomColor: colors.border,
   },
-  ejercicio: { fontSize: 16, fontWeight: '600' },
-  detalle: { fontSize: 14, color: '#555', marginTop: 2 },
+  ejercicio: { fontSize: 16, fontWeight: '600', color: colors.text },
+  detalle: { fontSize: 14, color: colors.textMuted, marginTop: 2 },
 });

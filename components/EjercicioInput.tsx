@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { colors } from '../theme';
 
 interface EjercicioInputProps {
   value: string;
@@ -22,6 +23,7 @@ export default function EjercicioInput({ value, onChange, sugerencias }: Ejercic
       <TextInput
         style={styles.input}
         placeholder="Ejercicio"
+        placeholderTextColor={colors.textMuted}
         value={value}
         onChangeText={onChange}
         onFocus={() => setEnfocado(true)}
@@ -41,7 +43,7 @@ export default function EjercicioInput({ value, onChange, sugerencias }: Ejercic
                   setEnfocado(false);
                 }}
               >
-                <Text>{item}</Text>
+                <Text style={styles.itemTexto}>{item}</Text>
               </TouchableOpacity>
             )}
           />
@@ -54,25 +56,28 @@ export default function EjercicioInput({ value, onChange, sugerencias }: Ejercic
 const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: colors.border,
     borderRadius: 8,
     paddingHorizontal: 12,
     paddingVertical: 10,
     fontSize: 16,
+    color: colors.text,
+    backgroundColor: colors.surface,
   },
   lista: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: colors.border,
     borderTopWidth: 0,
     borderBottomLeftRadius: 8,
     borderBottomRightRadius: 8,
     maxHeight: 160,
-    backgroundColor: '#fff',
+    backgroundColor: colors.surface,
   },
   item: {
     paddingHorizontal: 12,
     paddingVertical: 10,
     borderTopWidth: 1,
-    borderTopColor: '#eee',
+    borderTopColor: colors.border,
   },
+  itemTexto: { color: colors.text },
 });

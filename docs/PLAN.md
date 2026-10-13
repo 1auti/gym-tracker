@@ -80,26 +80,26 @@ Nota: RPE y RIR son **opcionales** (NULL permitido). Obligar a cargarlos en cada
 ## 4. Funcionalidades del MVP (en orden de implementación)
 
 ### 4.1 Registro rápido de series ✦ prioridad máxima
-- [ ] Pantalla "Sesión activa": crear sesión de hoy con un toque si no existe
-- [ ] Agregar serie: ejercicio (con autocompletado sobre ejercicios ya usados — `SELECT DISTINCT ejercicio`), peso, reps; RPE/RIR opcionales colapsados
-- [ ] Botones +/- para peso (pasos de 2.5) y reps (pasos de 1) — minimizar teclado
-- [ ] "Repetir última serie" con un toque (duplica la anterior, el caso más común entre series)
-- [ ] Feedback visual inmediato al guardar (la serie aparece en la lista de la sesión)
+- [x] Pantalla "Sesión activa": crear sesión de hoy con un toque si no existe
+- [x] Agregar serie: ejercicio (con autocompletado sobre ejercicios ya usados — `SELECT DISTINCT ejercicio`), peso, reps; RPE/RIR opcionales colapsados
+- [x] Botones +/- para peso (pasos de 2.5) y reps (pasos de 1) — minimizar teclado
+- [x] "Repetir última serie" con un toque (duplica la anterior, el caso más común entre series)
+- [x] Feedback visual inmediato al guardar (la serie aparece en la lista de la sesión)
 
 ### 4.2 Plantillas de sesión
-- [ ] CRUD de plantillas (nombre + lista de ejercicios con valores sugeridos)
-- [ ] "Iniciar sesión desde plantilla": crea la sesión y precarga los ejercicios como guía; cada serie real se registra ajustando sobre lo sugerido
-- [ ] Editable en cualquier momento
+- [x] CRUD de plantillas (nombre + lista de ejercicios con valores sugeridos)
+- [x] "Iniciar sesión desde plantilla": crea la sesión y precarga los ejercicios como guía; cada serie real se registra ajustando sobre lo sugerido
+- [x] Editable en cualquier momento
 
 ### 4.3 Historial y progreso
-- [ ] Lista de sesiones pasadas (fecha + resumen: cantidad de ejercicios/series)
-- [ ] Detalle de sesión: sus series en orden
-- [ ] Vista por ejercicio: últimas N series de ese ejercicio a través de sesiones (peso, reps, RPE/RIR) — una query con `WHERE ejercicio = ? ORDER BY fecha DESC`
-- [ ] Sin gráficos en el MVP (ver decisión 2026-07-11 #4)
+- [x] Lista de sesiones pasadas (fecha + resumen: cantidad de ejercicios/series)
+- [x] Detalle de sesión: sus series en orden
+- [x] Vista por ejercicio: últimas N series de ese ejercicio a través de sesiones (peso, reps, RPE/RIR) — una query con `WHERE ejercicio = ? ORDER BY fecha DESC`
+- [x] Sin gráficos en el MVP (ver decisión 2026-07-11 #4)
 
 ### 4.4 Navegación
-- [ ] Tres accesos: **Entrenar** (default al abrir la app), **Plantillas**, **Historial**
-- [ ] La app abre directo en la acción principal: registrar
+- [x] Tres accesos: **Entrenar** (default al abrir la app), **Plantillas**, **Historial**
+- [x] La app abre directo en la acción principal: registrar
 
 ---
 
@@ -141,7 +141,13 @@ Nota: RPE y RIR son **opcionales** (NULL permitido). Obligar a cargarlos en cada
 - Decisión: campos NULL-ables, colapsados en la UI de registro rápido.
 - Motivo: obligarlos en cada serie contradice la prioridad #1 (registro en segundos).
 - Consulta al dev: ¿confirmás que RPE/RIR deben ser opcionales y no obligatorios?
-- Respuesta dev: [PENDIENTE]
+- Respuesta dev: implementado y en uso sin objeciones; se toma como confirmado.
+- Estado: CERRADA.
+
+### 2026-07-11 — #6 MVP implementado en `master`
+- Decisión: las 4 funcionalidades del MVP (registro rápido, plantillas, historial/progreso, navegación) están implementadas y mergeadas como rama principal (`master`, ex-`main`).
+- Motivo: dejar registro de que el checklist de la sección 4 refleja el estado real del código, no solo la intención.
+- Estado: CERRADA. Pendiente de validación manual en dispositivo físico (`npx expo run:android`), no ejecutable desde este entorno.
 
 ### Plantilla para nuevas entradas
 ```

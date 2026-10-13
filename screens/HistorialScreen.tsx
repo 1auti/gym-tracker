@@ -4,6 +4,7 @@ import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native
 import { listEjerciciosConocidos, listSeriesBySesion, listSeriesPorEjercicio, SerieHistorial } from '../db/series';
 import { listSesiones } from '../db/sesiones';
 import { Serie, SesionResumen } from '../db/types';
+import { colors } from '../theme';
 
 type Vista =
   | { tipo: 'sesiones' }
@@ -137,22 +138,22 @@ export default function HistorialScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff' },
+  container: { flex: 1, backgroundColor: colors.background },
   tabs: { flexDirection: 'row', padding: 12, gap: 8 },
-  tab: { flex: 1, paddingVertical: 10, borderRadius: 8, backgroundColor: '#f1f1f1', alignItems: 'center' },
-  tabActivo: { backgroundColor: '#2563eb' },
-  tabTexto: { color: '#333', fontWeight: '600' },
-  tabTextoActivo: { color: '#fff' },
-  vacio: { textAlign: 'center', color: '#888', marginTop: 24 },
+  tab: { flex: 1, paddingVertical: 10, borderRadius: 8, backgroundColor: colors.surface, alignItems: 'center' },
+  tabActivo: { backgroundColor: colors.primary },
+  tabTexto: { color: colors.textMuted, fontWeight: '600' },
+  tabTextoActivo: { color: colors.onPrimary },
+  vacio: { textAlign: 'center', color: colors.textMuted, marginTop: 24 },
   fila: {
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    borderBottomColor: colors.border,
   },
-  filaTitulo: { fontSize: 16, fontWeight: '600' },
-  filaDetalle: { fontSize: 14, color: '#555', marginTop: 2 },
+  filaTitulo: { fontSize: 16, fontWeight: '600', color: colors.text },
+  filaDetalle: { fontSize: 14, color: colors.textMuted, marginTop: 2 },
   volver: { padding: 16 },
-  volverTexto: { color: '#2563eb', fontSize: 16 },
-  titulo: { fontSize: 20, fontWeight: '700', paddingHorizontal: 16, marginBottom: 8 },
+  volverTexto: { color: colors.primary, fontSize: 16 },
+  titulo: { fontSize: 20, fontWeight: '700', paddingHorizontal: 16, marginBottom: 8, color: colors.text },
 });
